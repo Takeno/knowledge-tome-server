@@ -1,0 +1,36 @@
+{
+  "name": "knoledge-tome-server",
+  "version": "1.0.0",
+  "description": "Feed aggregator with language filters",
+  "main": "index.js",
+  "scripts": {
+    "start": "aws:offline",
+    "aws:offline": "DYNAMO_LOCAL=1 serverless offline start",
+    "lint": "eslint --fix lib serverless.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matteo Manchi <matteo.manchi@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.237.1",
+    "axios": "^0.18.0",
+    "franc-min": "^4.0.0",
+    "lowdb": "^1.0.0",
+    "rss": "^1.2.2",
+    "rss-parser": "^3.1.2"
+  },
+  "devDependencies": {
+    "@improntaadvance/eslint-config": "0.8.3",
+    "babel-eslint": "^7.2.3",
+    "eslint": ">=4.3.0",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-flowtype": "^2.35.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-prettier": "^2.2.0",
+    "eslint-plugin-react": "^7.1.0",
+    "prettier": "^1.5.3",
+    "serverless-dynamodb-local": "^0.2.30",
+    "serverless-offline": "^3.21.1"
+  }
+}

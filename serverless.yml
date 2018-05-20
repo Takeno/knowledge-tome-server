@@ -1,0 +1,136 @@
+service: knoledge-tome
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  timeout: 10
+  # region: eu-west-1
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:resources.Resources.postsTable.Properties.TableName}"
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:resources.Resources.tokensTable.Properties.TableName}"
+
+
+package:
+  include:
+    - ./serverless.js
+
+# you can define service wide environment variables here
+#  environment:
+#    variable1: value1
+
+resources:
+  Resources:
+    postsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: postsTable
+        AttributeDefinitions:
+          - AttributeName: link
+            AttributeType: S
+          # - AttributeName: pubDate
+          #   AttributeType: S
+          # - AttributeName: channelCode
+          #   AttributeType: S
+        KeySchema:
+          - AttributeName: link
+            KeyType: HASH
+
+        # GlobalSecondaryIndexes:
+        #   - IndexName: channel_pubdate_key
+        #     KeySchema:
+        #       - AttributeName: channelCode
+        #         KeyType: HASH
+        #       - AttributeName: pubDate
+        #         KeyType: RANGE
+        #     Projection:
+        #       ProjectionType: ALL
+        #     ProvisionedThroughput:
+        #       ReadCapacityUnits: 1
+        #       WriteCapacityUnits: 1
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+    tokensTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: tokensTable
+        AttributeDefinitions:
+          - AttributeName: token
+            AttributeType: S
+        KeySchema:
+          - AttributeName: token
+            KeyType: HASH
+
+        # LocalSecondaryIndexes:
+        #   - IndexName: channels
+        #     KeySchema:
+        #         - AttributeName: channels
+        #         - keyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+
+functions:
+  fetchNewArticles:
+    handler: serverless.fetchNewArticles
+    timeout: 60
+    events:
+      - http:
+          path: _fetchAll
+          method: get
+      - schedule:
+          name: fetch-new-articles-from-feeds
+          description: 'Scheduled actions which check for new articles'
+          rate: rate(2 hours)
+  channels:
+    handler: serverless.channels
+    events:
+      - http:
+          path: channels
+          method: get
+  articles:
+    handler: serverless.articles
+    events:
+      - http:
+          path: articles
+          method: get
+  feed:
+    handler: serverless.feed
+    events:
+      - http:
+          path: feed
+          method: get
+  saveToken:
+    handler: serverless.saveToken
+    events:
+      - http:
+          path: token
+          method: get
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+
+custom:
+  dynamodb:
+    start:
+      migrate: true
