@@ -6,6 +6,8 @@
   "scripts": {
     "start": "aws:offline",
     "aws:offline": "DYNAMO_LOCAL=1 serverless offline start",
+    "dynamodb:install": "serverless dynamodb install",
+    "aws:deploy": "serverless deploy",
     "lint": "eslint --fix lib serverless.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -30,6 +32,7 @@
     "eslint-plugin-prettier": "^2.2.0",
     "eslint-plugin-react": "^7.1.0",
     "prettier": "^1.5.3",
+    "serverless": "^1.27.2",
     "serverless-dynamodb-local": "^0.2.30",
     "serverless-offline": "^3.21.1"
   }
