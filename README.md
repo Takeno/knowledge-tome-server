@@ -2,7 +2,11 @@
 
 This software is designed to fetch articles from multiple RSS feeds defined in [channels.json](./data/channels.json), store theme in a database and generate a single feed based on user interests.
 
-The purpose is create a feed aggregator for [Magic Judges world](magicjudges.org).
+The purpose is create a feed aggregator for [Magic Judges world](https://magicjudges.org).
+
+## How it works
+There is a scheduled task (fetchNewArticles) which fetch new articles from [channels.json](./data/channels.json).
+Then, the deployed endpoint `/feed?langs=ita,eng&channels=06d199,429ab1` will provide an RSS Feed with articles filtered by `lang` and `channel`.
 
 
 ### Specifications
