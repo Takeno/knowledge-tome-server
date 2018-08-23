@@ -1,0 +1,125 @@
+[
+    {
+        "title": "Rules & Policy Blogs",
+        "description": "directly from Magic Judges' blog",
+        "subchannels": [
+            {
+                "title": "Magic Rules Tips",
+                "description": "",
+                "link": "http://blogs.magicjudges.org/rulestips",
+                "feed": "https://blogs.magicjudges.org/rulestips/feed",
+                "code": "06d199"
+            },
+            {
+                "title": "Policy Perspectives",
+                "description": "More information than you probably wanted",
+                "link": "https://blogs.magicjudges.org/telliott",
+                "feed": "https://blogs.magicjudges.org/telliott/feed",
+                "code": "429ab1"
+            },
+            {
+                "title": "What's Up, Docs?",
+                "description": "Expanding on the philosophy behind the MIPG, MTR and Tournament Practices",
+                "link": "http://blogs.magicjudges.org/whatsupdocs",
+                "feed": "http://blogs.magicjudges.org/whatsupdocs/feed",
+                "code": "0200fe"
+            },
+            {
+                "title": "Translated Rules",
+                "description": "Magic and Tournament rules in various languages",
+                "link": "https://blogs.magicjudges.org/translatedrules/",
+                "feed": "https://blogs.magicjudges.org/translatedrules/feed/",
+                "code": "b47fa4"
+            },
+            {
+                "title": "The Knowledge Pool",
+                "description": "Droppin' Knowledge Left & Right",
+                "link": "http://blogs.magicjudges.org/knowledgepool/",
+                "feed": "http://blogs.magicjudges.org/knowledgepool/feed/",
+                "code": "2fe71b"
+            },
+            {
+                "title": "Regular REL",
+                "description": "Judging at Regular REL",
+                "link": "https://blogs.magicjudges.org/regular/",
+                "feed": "https://blogs.magicjudges.org/regular/feed/",
+                "code": "edc248"
+            }
+        ]
+    },
+    {
+        "title": "Project Blogs",
+        "description": "directly from Magic Judges' blog",
+        "subchannels": [
+            {
+                "title": "Judge Articles",
+                "description": "From the Judges, to the People",
+                "link": "https://blogs.magicjudges.org/articles/",
+                "feed": "https://blogs.magicjudges.org/articles/feed",
+                "code": "28dfdb"
+            },
+            {
+                "title": "JudgeCast",
+                "description": "A Magic Judge's Most Useful Podcast",
+                "link": "http://judgecast.com/",
+                "feed": "http://judgecast.com/feed",
+                "code": "d11cf3"
+            }
+        ]
+    },
+    {
+        "title": "Cranial Insertion",
+        "description": "News and Articles for Cranial Insertion",
+        "subchannels": [
+            {
+                "title": "English",
+                "description": "",
+                "link": "http://www.cranialinsertion.com/rss",
+                "feed": "http://www.cranialinsertion.com/rss",
+                "code": "b7facc"
+            },
+            {
+                "title": "Italiano",
+                "description": "",
+                "link": "http://www.cranialinsertion.com/rss",
+                "feed": "http://www.cranialinsertion.com/rss/it",
+                "code": "93d252"
+            },
+            {
+                "title": "Français",
+                "description": "",
+                "link": "http://www.cranialinsertion.com/rss",
+                "feed": "http://www.cranialinsertion.com/rss/fr",
+                "code": "8eb373"
+            },
+            {
+                "title": "Deutsch",
+                "description": "",
+                "link": "http://www.cranialinsertion.com/rss",
+                "feed": "http://www.cranialinsertion.com/rss/de",
+                "code": "af47cd"
+            },
+            {
+                "title": "Español",
+                "description": "",
+                "link": "http://www.cranialinsertion.com/rss",
+                "feed": "http://www.cranialinsertion.com/rss/es",
+                "code": "18dddb"
+            },
+            {
+                "title": "Português (Br)",
+                "description": "",
+                "link": "http://www.cranialinsertion.com/rss",
+                "feed": "http://www.cranialinsertion.com/rss/br",
+                "code": "a6779c"
+            },
+            {
+                "title": "的新闻和文章 (简体中文",
+                "description": "",
+                "link": "http://www.cranialinsertion.com/rss/cs",
+                "feed": "http://www.cranialinsertion.com/rss/cs",
+                "code": "3085d6"
+            }
+        ]
+    }
+]

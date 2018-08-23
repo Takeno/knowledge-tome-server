@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Knowledge Tome - RSS Feed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="is-size-1">Knowledge Tome - Your last Magic RSS feed</h1>
+        <p>Knowledge Tome is an RSS Feed which aggregates multiple news sites about Magic Judge's world. It scrapes the following channels looking for new articles. It parses them and detects the language, so you will stop to receive uncomprehensible articles that are not in your speaking language.</p>
+        <p>The aim is to help judges around the world to stay updated. Stop checking dozens of sites weekly!</p>
+        <p>This is still a Proof of Concept, and it is <a href="https://github.com/Takeno/knowledge-tome-server/">open source</a>.</p>
+
+        <p>If you want to report a new site or submit feedbacks, please open an <a href="https://github.com/Takeno/knowledge-tome-server/issues">issue</a> or contact me on <a href="https://apps.magicjudges.org/judges/Takeno/">JudgeApps</a>.</p>
+    </div>
+
+
+
+
+    <br />
+    <br />
+    <div class="container">
+        <h2 class="is-size-4">1. Choose the languages</h2>
+        <section id="languages" style="padding: 20px;">
+            <div class="columns">
+                <div class="field column">
+                    <div class="control">
+                        <label class="checkbox">
+                            <input type="checkbox" value="eng">
+                            English
+                        </label>
+                    </div>
+                </div>
+                <div class="field column">
+                    <div class="control">
+                        <label class="checkbox">
+                            <input type="checkbox" value="ita">
+                            Italian
+                        </label>
+                    </div>
+                </div>
+                <div class="field column">
+                    <div class="control">
+                        <label class="checkbox">
+                            <input type="checkbox" value="fra">
+                            French
+                        </label>
+                    </div>
+                </div>
+                <div class="field column">
+                    <div class="control">
+                        <label class="checkbox">
+                            <input type="checkbox" value="deu">
+                            German
+                        </label>
+                    </div>
+                </div>
+                <div class="field column">
+                    <div class="control">
+                        <label class="checkbox">
+                            <input type="checkbox" value="spa">
+                            Spanish
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br />
+        <br />
+        <h2 class="is-size-4">2. Choose the channels</h2>
+        <div id="root" style="padding: 20px;"></div>
+        <br />
+        <br />
+        <h2 class="is-size-4">3. Get your feed</h2>
+        <section  style="padding: 20px;">
+            <input class="input" id="feedlink" type="text" readonly>
+        </section>
+    </div>
+
+    <script>
+        $.get('./channels.json')
+            .then(channels => {
+                const app = channels.reduce((app, channel) => `${app}
+                    <section style="margin-bottom: 20px">
+                        <h3 class="is-size-5">${channel.title} <small>${channel.description}</small></h3>
+                        ${channel.subchannels.reduce((str, c) => `${str}
+                        <div class="field" style="margin-left: 30px">
+                            <div class="control">
+                                <label class="checkbox">
+                                    <input type="checkbox" value="${c.code}" />
+                                    <strong>${c.title}</strong><small>${c.description ? ' - ' + c.description : ''}</small>
+                                </label>
+                            </div>
+                        </div>
+                        `, '')}
+                    </section>
+                `, '');
+
+                $('#root').append(app);
+            });
+
+        const URL = 'https://lyi06xddr8.execute-api.us-east-1.amazonaws.com/dev/feed?lang=__LANGS__&channels=__CHANNELS__';
+
+        $(document.body).on('change', 'input[type="checkbox"]', function () {
+            compute();
+        });
+
+        function compute() {
+            const languages = $('#languages').find('input:checked').map((index, el) => $(el).val()).get();
+            const channels = $('#root').find('input:checked').map((index, el) => $(el).val()).get();
+
+
+            $('#feedlink').val(
+                URL.replace('__LANGS__', languages.join(',')).replace('__CHANNELS__', channels.join(','))
+            );
+        }
+    </script>
+</body>
+
+</html>
