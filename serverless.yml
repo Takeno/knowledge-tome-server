@@ -129,8 +129,14 @@ functions:
 plugins:
   - serverless-dynamodb-local
   - serverless-offline
+  - serverless-domain-manager
 
 custom:
   dynamodb:
     start:
       migrate: true
+  customDomain:
+    domainName: feed.tolaria.academy
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: true
