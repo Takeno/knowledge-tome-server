@@ -1,0 +1,45 @@
+{
+  "name": "tolaria-academy-website",
+  "version": "1.0.0",
+  "author": "Matteo Manchi <matteo.manchi@gmail.com>",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.3.1",
+    "axios": "^0.18.0",
+    "bulma": "^0.7.1",
+    "date-fns": "^1.29.0",
+    "gatsby": "^1.9.277",
+    "gatsby-link": "^1.6.46",
+    "gatsby-plugin-manifest": "^1.0.27",
+    "gatsby-plugin-offline": "^1.0.18",
+    "gatsby-plugin-react-helmet": "^2.0.11",
+    "gatsby-plugin-react-next": "^1.0.11",
+    "react-helmet": "^5.2.0"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "start": "gatsby develop",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@improntaadvance/eslint-config": "0.8.3",
+    "babel-eslint": "^7.2.3",
+    "eslint": ">=4.3.0",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-flowtype": "^2.35.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-prettier": "^2.2.0",
+    "eslint-plugin-react": "^7.1.0",
+    "gh-pages": "^1.2.0",
+    "prettier": "^1.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Takeno/knowledge-tome-server/"
+  }
+}
