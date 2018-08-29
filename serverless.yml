@@ -113,6 +113,7 @@ functions:
       - http:
           path: articles
           method: get
+          cors: true
   feed:
     handler: serverless.feed
     events:
