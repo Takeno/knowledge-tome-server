@@ -9,14 +9,8 @@ import './index.css';
 
 const Layout = ({children, data}) => (
     <React.Fragment>
-        <Helmet
-            title={data.site.siteMetadata.title}
-            meta={[
-                {name: 'description', content: 'Sample'},
-                {name: 'keywords', content: 'sample, something'},
-            ]}
-        />
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Helmet title={data.site.siteMetadata.title} />
+        <Header />
 
         {children()}
 
