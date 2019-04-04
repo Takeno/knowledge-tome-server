@@ -2,7 +2,7 @@ const db = require('./lib/db');
 const channels = require('./data/channels.json');
 const fetchFeed = require('./lib/fetch-feed');
 const postDecorator = require('./lib/post-decorator');
-const RSS = require('rss');
+const {Feed} = require('feed');
 
 module.exports.channels = async () => {
     const response = {
@@ -41,20 +41,24 @@ module.exports.feed = async event => {
 
     const posts = await db.getPosts(langs, channels);
 
-    const feed = new RSS({
+    const feed = new Feed({
         title: 'KnowledgeTome',
         description: "Articles from judge's blogs",
-        managingEditor: 'Matteo Manchi',
-        language: langs.join(', '),
-        pubDate: new Date(),
-        ttl: '120',
+        id: 'https://tolaria.academy/',
+        link: 'https://tolaria.academy/',
+        generator: 'npm install feed', // optional, default = 'Feed for Node.js'
+        author: {
+            name: 'Matteo Manchi',
+            email: 'matteo.manchi@gmail.com',
+        },
     });
 
     posts.forEach(post =>
-        feed.item({
+        feed.addItem({
             title: post.title,
             description: post.description,
-            url: post.link,
+            link: post.link,
+            id: post.link,
             categories: [feed.channel, post.category],
             date: post.pubDate,
         })
@@ -63,9 +67,9 @@ module.exports.feed = async event => {
     const response = {
         statusCode: 200,
         headers: {
-            'Content-Type': 'text/xml',
+            'Content-Type': 'text/xml; charset=utf-8',
         },
-        body: feed.xml(),
+        body: feed.rss2(),
     };
 
     return response;
